@@ -1,6 +1,0 @@
-;SuperTux-Level-Subset
-(supertux-level-subset
-  (title "Forest World")
-  (description "World 2")
-  (hide-from-contribs #f)
-  )

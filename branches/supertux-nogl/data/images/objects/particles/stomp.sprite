@@ -1,7 +1,0 @@
-(supertux-sprite
- (action
-  (x-offset 0)
-  (y-offset 0)
-  (images "stomp.png")
- )
-)
