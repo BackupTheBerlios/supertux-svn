@@ -1,0 +1,52 @@
+(supertux-sprite
+ (action
+  (name "small-stop")
+  (x-offset 5)
+  (y-offset 20)
+  (images "smalltux.png")
+ )
+ (action
+  (name "small-walking")
+  (x-offset 5)
+  (y-offset 20)
+  (images "smalltux.png"
+"smalltux1.png"
+"smalltux2.png"
+"smalltux3.png"
+"smalltux4.png"
+"smalltux5.png"
+"smalltux6.png"
+"smalltux7.png"
+"smalltux8.png"
+"smalltux6.png"
+"smalltux5.png"
+"smalltux4.png"
+"smalltux3.png"
+"smalltux2.png"
+"smalltux1.png"
+"smalltux.png"
+
+)
+ )
+ (action
+  (name "large-walking")
+  (y-offset 10)
+  (images "tux.png")
+ )
+ (action
+  (name "large-stop")
+  (y-offset 10)
+  (images "tux.png")
+ )
+ (action
+  (name "fire-walking")
+  (y-offset 10)
+  (images "firetux.png")
+ )
+ (action
+  (name "fire-stop")
+  (y-offset 10)
+  (images "firetux.png")
+ )
+)
+
