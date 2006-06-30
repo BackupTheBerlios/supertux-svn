@@ -1,0 +1,41 @@
+SubDir TOP src ;
+
+SubInclude TOP src squirrel ;
+SubInclude TOP src scripting ;
+
+#------------------------
+# SuperTux ARCHIVE FILES:
+#------------------------
+# the following keeps the .o files after an archive file (.a) is created
+NOARUPDATE = true ;
+
+for i in audio badguy control gui lisp math object physfs sprite
+    tinygettext trigger video worldmap
+{
+    sources = [ Wildcard $(i) : *.cpp *.hpp ] ;
+    Library $(i) : $(sources) : noinstall ;
+    TRANSLATABLE_SOURCES += [ SearchSource $(sources) ] ;
+}
+
+ExternalLibs audio badguy control gui lisp math object physfs sprite
+      tinygettext trigger video worldmap
+    : SDL SDLIMAGE GL OPENAL VORBIS VORBISFILE OGG ICONV PHYSFS BINRELOC ;
+IncludeDir audio badguy control gui lisp math object physfs sprite
+      tinygettext trigger video worldmap
+    : squirrel/include squirrel ;
+
+#----------------------
+# SuperTux Application:
+#----------------------
+sources = [ Wildcard *.cpp *.hpp ] ;
+TRANSLATABLE_SOURCES += [ SearchSource $(sources) ] ;
+
+Application supertux : $(sources) $(wrapper_objects) ;
+C++Flags supertux : -DAPPDATADIR='\"$(appdatadir)\"' ;
+LinkWith supertux : squirrel ;
+ExternalLibs supertux : SDL SDLIMAGE GL OPENAL VORBIS VORBISFILE OGG ICONV PHYSFS BINRELOC ;
+Help supertux : "Build the supertux executable" ;
+IncludeDir supertux : squirrel/include squirrel ;
+
+LinkWithWholeArchive supertux : audio badguy control gui lisp math object physfs sprite
+    tinygettext trigger video worldmap ;

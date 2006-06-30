@@ -1,0 +1,33 @@
+# warning for people who try jam install
+actions InstallWarning
+{
+    echo "****************************************************************"
+    echo "* WARNING: Installation is currently broken                    *"
+    echo "* Please start the game directly from source directory instead *"
+    echo "****************************************************************"
+    sleep 5
+}
+
+InstallWarning installwarning ;
+Always installwarning ;
+Depends install : installwarning ;
+
+
+SubDir TOP ;
+
+# Decend into subdirs
+SubInclude TOP tools miniswig ;
+SubInclude TOP src ;
+SubInclude TOP data ;
+
+UseAutoconf ;
+
+# add some additional files to package
+Package INSTALL NEWS README COPYING AUTHORS ChangeLog ;
+
+MakePot data/locale/messages.pot : $(TRANSLATABLE_SOURCES) ;
+XGETTEXT_FLAGS on data/locale/messages.pot += -k_ -C ;
+
+InstallPixmap data/images/engine/icons/supertux.png data/images/engine/icons/supertux.xpm ;
+InstallDesktop supertux.desktop ;
+InstallDoc NEWS README COPYING AUTHORS ChangeLog ;
